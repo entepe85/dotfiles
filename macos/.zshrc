@@ -7,7 +7,37 @@ export ZSH=/Users/butenschoen/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="agnoster"
+ZSH_THEME="spaceship"
+# TYPEWRITTEN_PROMPT_LAYOUT="multiline"
+# TYPEWRITTEN_SYMBOL="$"
+SPACESHIP_CHAR_SUFFIX=" "
+SPACESHIP_DIR_PREFIX="∙ 📂 "
+SPACESHIP_USER_SUFFIX=""
+SPACESHIP_USER_SHOW="always"
+SPACESHIP_HOST_PREFIX="@"
+SPACESHIP_HOST_SHOW="always"
+SPACESHIP_GIT_PREFIX="∙ "
+SPACESHIP_PACKAGE_PREFIX="∙ "
+SPACESHIP_NODE_PREFIX="∙ "
+SPACESHIP_PHP_PREFIX="∙ "
+SPACESHIP_EMBER_PREFIX="∙ "
+SPACESHIP_GOLANG_PREFIX="∙ "
+SPACESHIP_EXEC_TIME_PREFIX="∙ "
+SPACESHIP_PROMPT_ORDER=(
+  user
+  host
+  dir
+  git
+  package
+  node
+  php
+  golang
+  ember
+  line_sep
+  jobs
+  exit_code
+  char
+)
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -39,7 +69,7 @@ ZSH_THEME="agnoster"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -49,7 +79,7 @@ ZSH_THEME="agnoster"
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="dd.mm.yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -59,12 +89,11 @@ ZSH_THEME="agnoster"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  brew
   git
   git-flow
-  emoji
   npm
   symfony2
-  web-search
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -74,7 +103,7 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=de_DE.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -102,6 +131,7 @@ alias gtag="git tag | sort -V"
 alias apksigner="sh ~/Downloads/build-tools/27.0.3/apksigner"
 alias zipalign="~/Downloads/build-tools/27.0.3/zipalign"
 alias hh=hstr
+alias composer="php -n -d memory_limit=-1 /usr/local/bin/composer"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -119,6 +149,14 @@ export HISTFILE=~/.zsh_history   # ensure history file visibility
 export HH_CONFIG=hicolor         # get more colors
 bindkey -s "\C-r" "\eqhh\n"  # bind hh to Ctrl-r (for Vi mode check doc, experiment with --)
 
-if [[ -z "$TMUX" ]]; then
-	tmux attach-session -t alacritty || tmux new-session -s alacritty
-fi
+# if [[ -z "$TMUX" ]]; then
+#	tmux attach-session -t alacritty || tmux new-session -s alacritty
+# fi
+export PATH="/usr/local/sbin:$PATH"
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export FLAGS_GETOPT_CMD="$(brew --prefix gnu-getopt)/bin/getopt"
+
+[[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
+export PATH="/usr/local/opt/mysql-client/bin:$PATH"
+
